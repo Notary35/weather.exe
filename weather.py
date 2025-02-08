@@ -85,7 +85,7 @@ if __name__ == "__main__":
             "Введите название города (для выхода напишите 'стоп' или 'exit'): "
         )
         if input_city.lower() in ["стоп", "exit"]:
-            print("Спасибо за использование программы!")
+            print("Программа завершена")
             break
         try:
             weather(input_city)
