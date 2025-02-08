@@ -77,3 +77,18 @@ class WeatherFacade:
         message = self.weather.get_weather_string(weather_dict)
         self.notification(title, message)
 
+
+if __name__ == "__main__":
+    weather = WeatherFacade(API_KEY)
+    while True:
+        input_city = input(
+            "Введите название города (для выхода напишите 'стоп' или 'exit'): "
+        )
+        if input_city.lower() in ["стоп", "exit"]:
+            print("Спасибо за использование программы!")
+            break
+        try:
+            weather(input_city)
+        except WeatherRequestError as e:
+            print(f"Ошибка: {e}")
+            print("Проверьте правильность написания города и попробуйте снова")
