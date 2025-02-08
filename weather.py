@@ -53,3 +53,14 @@ class WeatherRequst:
         weather_dict = self.get_clear_weather_data(city)
         return self.get_weather_string(weather_dict)
 
+
+class Notification:
+    @staticmethod
+    def send_notification(title: str, message: str):
+        toast = WinNotification(
+            app_id="Погодное приложение", title=title, msg=message, duration="short"
+        )
+        toast.show()
+
+    def __call__(self, title: str, message: str):
+        self.send_notification(title, message)
