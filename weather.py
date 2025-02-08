@@ -64,3 +64,16 @@ class Notification:
 
     def __call__(self, title: str, message: str):
         self.send_notification(title, message)
+
+
+class WeatherFacade:
+    def __init__(self, api_key: str, units: str = "metric", language: str = "ru"):
+        self.weather = WeatherRequst(api_key, units, language)
+        self.notification = Notification()
+
+    def __call__(self, city: str):
+        weather_dict = self.weather.get_clear_weather_data(city)
+        title = f"Погода в {city}"
+        message = self.weather.get_weather_string(weather_dict)
+        self.notification(title, message)
+
